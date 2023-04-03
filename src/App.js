@@ -1,20 +1,18 @@
-// import React from 'react';
+import React from 'react';
+import CadastroAnimais from './components/Cadastro/CadastroAnimais';
 // import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-// import Login from './Login';
-// import CadastroAnimais from './CadastroAnimais';
+ import Login from './components/Login/Login';
+
 
 function App() {
-  return 
-//     <Router>
-//       <div>
-//         <Switch>
-//           <Route exact path="/" component={Login} />
-//           <Route path="/cadastro" component={CadastroAnimais} />
-//         </Switch>
-//       </div>
-//     </Router>
+  return <>
+   
+   <Login/>
+    <CadastroAnimais />
   
+    
+  </>  
 }
 
 export default App;
