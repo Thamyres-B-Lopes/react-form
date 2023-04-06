@@ -1,43 +1,25 @@
 import React, { useState } from 'react';
 import './style.css';
+import  { Axios } from "axios";
+// import api from './api';
 // import { Link } from 'react-router-dom'
 
+
   function Login() {
-  //   const [formData, setFormData] = useState({
-  //     nome: "",
-  //     email: "",
-  //     senha: "",
-  //   });
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nome, setNome] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email.includes('@') || password.length < 8) {
-      alert('Por favor, insira um email válido e uma senha com pelo menos 8 caracteres.');
-      return;
-    }
-    // enviar dados de login para o servidor
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const user = { nome, email, password };
+    // await api.post  ('/users', user);
+    setNome('');
+    setEmail('');
+    setPassword('');
+    alert('Usuário cadastrado com sucesso!');
   };
-  // // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   axios.post("https://my-storage-api.com/data", formData)
-  //     .then(response => {
-  //       console.log(response);
-  //       alert("Dados enviados com sucesso!");
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       alert("Houve um erro ao enviar os dados.");
-  //     });
-  // }
-  // const handleChange = (event) => {
-  //   setFormData({
-  //     ...formData,
-  //     [event.target.name]: event.target.value
-  //   });
-  // }
+  
 
 
   return (
@@ -46,22 +28,21 @@ import './style.css';
       <form onSubmit={handleSubmit}>
         <label>
           Nome:
-          <input type="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+          <input type="name" placeholder = "Insira o seu nome" value={nome} onChange={(e) => setNome(e.target.value)} />
         </label>
         <br />
         <label>
           Email:
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" placeholder = "Insira o seu email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <br />
         <label>
           Senha:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" placeholder = "Insira sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <br />
         <button onClick={handleSubmit}>Enviar</button>
       </form>
-      {/* <p>Não tem conta? <Link to="/cadastro">Cadastre-se aqui.</Link></p> */}
     </div>
   );
 }

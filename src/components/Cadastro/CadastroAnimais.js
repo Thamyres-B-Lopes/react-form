@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./style.css";
 // import { Link } from 'react-router-dom';
+// import api from './api';
+import  { Axios } from "axios";
+ 
 
 function CadastroAnimais() {
   const [nome, setNome] = useState("");
@@ -15,39 +18,59 @@ function CadastroAnimais() {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    // validar entradas
-    if (
-      !nome ||
-      !raca ||
-      !cep ||
-      !idade ||
-      !sexo ||
-      !porte ||
-      !email ||
-      !telefone ||
-      !vacina ||
-      !castracao
-    ) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
-    // enviar dados de cadastro para o servidor
-  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const pet = { nome, email,raca,vacina,castracao,cep,idade,sexo,porte,descricao,telefone };
+    // await api.post  ('/users', user);
+    setNome('');
+    setEmail('');
+    setVacina('');
+    setCastracao('');
+    setCep('');
+    setIdade('');
+    setSexo('');
+    setPorte('');
+    setDescricao('');
+    setTelefone('');
+
+    alert('Animal cadastrado com sucesso!');
+  };
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   // validar entradas
+    
+  //   if (
+  //     !nome ||
+  //     !raca ||
+  //     !cep ||
+  //     !idade ||
+  //     !sexo ||
+  //     !porte ||
+  //     !email ||
+  //     !telefone ||
+  //     !vacina ||
+  //     !castracao 
+  //   ) {
+  //     alert("Por favor, preencha todos os campos obrigatórios.");
+  //     return;
+  //   }
+  //   // enviar dados de cadastro para o servidor
+  // }
 
   return (
     <div className="cadastro">
       <h2>Cadastro de Animais</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Adicionar Foto:</label>
-          <input type="file" accept="image/*" />
+          <label>Adicione sua foto:</label>
+          <input className=" picture" type="file" accept="image/*" />
         </div>
         <div className="form-group">
           <label>Nome:</label>
           <input
             type="text"
+            placeholder = "Insira o nome do animal" 
             value={nome}
             onChange={(e) => setNome(e.target.value)}
           />
@@ -57,6 +80,7 @@ function CadastroAnimais() {
           <label>Raça:</label>
           <input
             type="text"
+            placeholder = "Insira a raça"
             value={raca}
             onChange={(e) => setRaca(e.target.value)}
           />
@@ -101,6 +125,7 @@ function CadastroAnimais() {
           <label>CEP:</label>
           <input
             type="number"
+            placeholder = "Insira o cep"
             value={cep}
             onChange={(e) => setCep(e.target.value)}
           />
@@ -110,25 +135,29 @@ function CadastroAnimais() {
           <label>Idade:</label>
           <input
             type="number"
+            placeholder = "Insira a idade"
             value={idade}
             onChange={(e) => setIdade(e.target.value)}
           />
         </div>
 
         <div>
-          <label>Descrição:</label>
-
+          <label>Descrição: </label>
+         
           <textarea
             type="text"
+            placeholder = "Insira uma breve descrição do animal"
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
           />
+          
         </div>
         <div className="form-group">
           <label>Telefone:</label>
           <input
             type="number"
-            
+            placeholder = "Insira um telefone"
+
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
 
@@ -138,7 +167,8 @@ function CadastroAnimais() {
         <div className="form-group">
           <label>Email:</label>
           <input
-            type="text"
+            type="email"
+            placeholder = "Insira um email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
