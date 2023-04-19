@@ -1,19 +1,18 @@
-import React from 'react';
+// import React from 'react';
 import CadastroAnimais from './components/Cadastro/CadastroAnimais';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import Login from './components/Login/Login';
 
- import Login from './components/Login/Login';
 
+
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
-  return <>
-   
-   <Login/>
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* <Login/> */}
     <CadastroAnimais />
-  
-    
-  </>  
-}
-
-export default App;
-
+    </QueryClientProvider>
+  );
+}export default App;

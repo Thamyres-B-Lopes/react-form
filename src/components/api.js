@@ -1,7 +1,16 @@
-import axios from 'axios';
+export const LoginUser = async (data) => {
+  const response = await fetch("/api/cadastro", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-const api = axios.create({
-  baseURL: 'http://localhost:3000/api', // Insira a URL da sua API aqui
-});
+  if (!response.ok) {
+    throw new Error("Ocorreu um erro ao cadastrar o usuário.");
+  }
 
-export default api;
+  return response.json();
+};
+

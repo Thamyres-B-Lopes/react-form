@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 // import { Link } from 'react-router-dom';
 // import api from './api';
-import  { Axios } from "axios";
+
  
 
 function CadastroAnimais() {
@@ -17,10 +17,12 @@ function CadastroAnimais() {
   const [descricao, setDescricao] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [imagem, setImagem] = useState(null);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const pet = { nome, email,raca,vacina,castracao,cep,idade,sexo,porte,descricao,telefone };
+    const pet = { nome, email,raca,vacina,castracao,cep,idade,sexo,porte,descricao,telefone, imagem };
     // await api.post  ('/users', user);
     setNome('');
     setEmail('');
@@ -32,8 +34,13 @@ function CadastroAnimais() {
     setPorte('');
     setDescricao('');
     setTelefone('');
+    setImagem ('');
 
     alert('Animal cadastrado com sucesso!');
+  };
+
+  const handleImageChange = (event) => {
+    setImagem(event.target.files[0]);
   };
 
   // function handleSubmit(e) {
@@ -64,7 +71,13 @@ function CadastroAnimais() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Adicione sua foto:</label>
-          <input className=" picture" type="file" accept="image/*" />
+          <input className="picture"
+           type="file" 
+           accept="image/*" 
+           value={imagem}
+           onChange={handleImageChange} 
+           />
+           
         </div>
         <div className="form-group">
           <label>Nome:</label>
@@ -176,7 +189,7 @@ function CadastroAnimais() {
         <br />
 
         <br />
-        <button onClick={handleSubmit} >Cadastrar</button>
+        <button type="submit" >Cadastrar</button>
       </form>
       {/* <p>Já tem uma conta? <Link to="/">Faça login aqui.</Link></p> */}
     </div>
